@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>StudyX 10</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+  padding-bottom:75px;
+}
+body.dark{background:#10131a;color:#f2f4f8}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+.app{max-width:650px;margin:auto;min-height:100vh}
+
+header{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:white;padding:20px 18px;
+  border-radius:0 0 25px 25px;
+}
+.top{
+ display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-size:25px;font-weight:800}
+.sub{opacity:.85;font-size:12px;margin-top:4px}
+.iconbtn{
+ background:rgba(255,255,255,.18);color:white;
+ width:40px;height:40px;border-radius:50%;
+}
+
+.page{padding:18px}
+.section-title{
+ font-size:19px;font-weight:800;margin:20px 0 12px
+}
+
+.card{
+ background:white;border-radius:18px;padding:16px;
+ margin-bottom:12px;
+ box-shadow:0 5px 18px rgba(20,30,60,.07)
+}
+.dark .card{background:#191d27;box-shadow:none}
+
+.hero{
+ background:linear-gradient(135deg,#eef2ff,#faf5ff);
+ border-radius:20px;padding:18px;margin-top:16px;
+}
+.dark .hero{background:#191d2b}
+
+.hero h2{font-size:23px;margin-bottom:7px}
+.hero p{color:#667085;font-size:13px}
+.dark .hero p{color:#aeb5c3}
+
+.progress{
+ height:9px;background:#e5e7eb;border-radius:10px;
+ overflow:hidden;margin:12px 0
+}
+.progress i{
+ display:block;height:100%;
+ background:linear-gradient(90deg,#4f46e5,#8b5cf6);
+ width:0%
+}
+
+.grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+}
+.stat{
+ background:white;padding:15px;border-radius:17px
+}
+.dark .stat{background:#191d27}
+.stat b{font-size:22px;display:block}
+.stat span{font-size:12px;color:#667085}
+
+.btn{
+ width:100%;padding:13px;border-radius:13px;
+ background:#4f46e5;color:white;font-weight:700;
+ margin-top:9px
+}
+.btn.secondary{background:#eef2ff;color:#4338ca}
+.dark .btn.secondary{background:#292d3b;color:#c7c9ff}
+.btn.green{background:#16a34a}
+.btn.red{background:#dc2626}
+.btn.gray{background:#667085}
+
+.nav{
+ position:fixed;bottom:0;left:0;right:0;
+ background:white;border-top:1px solid #ddd;
+ height:68px;display:flex;justify-content:center;
+ z-index:99
+}
+.dark .nav{background:#171a22;border-color:#292d38}
+.nav-inner{
+ max-width:650px;width:100%;
+ display:flex;justify-content:space-around
+}
+.nav button{
+ background:none;color:#667085;font-size:11px;
+ width:20%;padding-top:10px
+}
+.nav button.active{color:#4f46e5;font-weight:bold}
+.nav span{display:block;font-size:21px;margin-bottom:3px}
+
+.subject{
+ display:flex;align-items:center;gap:12px
+}
+.subject-icon{
+ width:48px;height:48px;border-radius:15px;
+ display:grid;place-items:center;
+ background:#eef2ff;font-size:24px
+}
+.dark .subject-icon{background:#292d3b}
+
+.list-btn{
+ display:flex;align-items:center;justify-content:space-between;
+ width:100%;background:none;color:inherit;
+ padding:14px 0;border-bottom:1px solid #eee;text-align:left
+}
+.dark .list-btn{border-color:#292d38}
+
+.tag{
+ display:inline-block;padding:5px 8px;border-radius:8px;
+ background:#eef2ff;color:#4338ca;font-size:11px;font-weight:bold
+}
+.dark .tag{background:#292d3b;color:#c7c9ff}
+
+input[type=text],input[type=number],select{
+ width:100%;padding:13px;border:1px solid #ddd;
+ border-radius:12px;background:white;color:#222;
+ margin:6px 0 12px
+}
+.dark input,.dark select{
+ background:#191d27;color:white;border-color:#363b48
+}
+
+.check{
+ display:flex;gap:9px;align-items:center;
+ padding:9px 0;font-size:14px
+}
+
+.question{
+ font-size:18px;font-weight:700;line-height:1.45;
+ margin:15px 0
+}
+.option{
+ width:100%;text-align:left;padding:13px;
+ background:#f3f4f6;color:#222;
+ border-radius:12px;margin:7px 0
+}
+.dark .option{background:#292d38;color:white}
+.option.correct{background:#bbf7d0!important;color:#166534!important}
+.option.wrong{background:#fecaca!important;color:#991b1b!important}
+
+.timer{
+ background:#111827;color:white;padding:8px 12px;
+ border-radius:10px;font-weight:bold;display:inline-block
+}
+
+.note h3{margin-bottom:8px}
+.note p,.note li{
+ font-size:14px;line-height:1.65;color:#555
+}
+.dark .note p,.dark .note li{color:#c1c6d0}
+.note ul{padding-left:20px}
+
+.hide{display:none!important}
+.small{font-size:12px;color:#667085}
+.dark .small{color:#aeb5c3}
+.center{text-align:center}
+.badge{
+ padding:8px 12px;border-radius:20px;
+ background:#fef3c7;color:#92400e;font-size:12px;
+ display:inline-block;margin:4px
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+ <div class="top">
+  <div>
+   <div class="logo">📚 StudyX 10</div>
+   <div class="sub">CBSE Class 10 • Study Smart</div>
+  </div>
+  <button class="iconbtn" onclick="toggleDark()">🌙</button>
+ </div>
+</header>
+
+<main class="page">
+
+<!-- HOME -->
+<section id="home">
+
+<div class="hero">
+ <h2 id="hello">Welcome, Student 👋</h2>
+ <p>Today's target complete karo aur apni preparation strong banao.</p>
+
+ <div class="progress"><i id="dailyBar"></i></div>
+ <div class="small" id="dailyText">0 / 20 questions today</div>
+
+ <button class="btn" onclick="startDaily()">🎯 Start Today's Study</button>
+</div>
+
+<div class="grid" style="margin-top:14px">
+ <div class="stat"><b id="testsStat">0</b><span>Tests</span></div>
+ <div class="stat"><b id="questionsStat">0</b><span>Questions</span></div>
+ <div class="stat"><b id="accuracyStat">0%</b><span>Accuracy</span></div>
+ <div class="stat"><b id="bestStat">0%</b><span>Best Score</span></div>
+</div>
+
+<div class="section-title">🚀 Quick Start</div>
+
+<div class="grid">
+ <button class="card" onclick="show('subjects')">📚<br><b>Subjects</b></button>
+ <button class="card" onclick="show('tests')">🧪<br><b>Test Series</b></button>
+ <button class="card" onclick="show('notes')">📖<br><b>Notes</b></button>
+ <button class="card" onclick="show('custom')">🎯<br><b>Custom Exam</b></button>
+</div>
+
+<div class="section-title">🏆 Your Progress</div>
+<div class="card">
+ <div id="levelText"><b>Level 1 • Beginner</b></div>
+ <div class="progress"><i id="xpBar"></i></div>
+ <div class="small" id="xpText">0 XP</div>
+</div>
+
+<div class="section-title">🔥 Achievements</div>
+<div class="card" id="badges"></div>
+
+</section>
+
+
+<!-- SUBJECTS -->
+<section id="subjects" class="hide">
+<div class="section-title">📚 Subjects</div>
+
+<div id="subjectList"></div>
+</section>
+
+
+<!-- CHAPTERS -->
+<section id="chapters" class="hide">
+<button class="btn secondary" onclick="show('subjects')">← Subjects</button>
+<div class="section-title" id="chapterTitle"></div>
+<div id="chapterList"></div>
+</section>
+
+
+<!-- NOTES -->
+<section id="notes" class="hide">
+<div class="section-title">📖 Chapter Notes</div>
+
+<select id="noteSubject" onchange="loadNotes()"></select>
+<select id="noteChapter" onchange="renderNote()"></select>
+
+<div id="noteContent"></div>
+</section>
+
+
+<!-- TESTS -->
+<section id="tests" class="hide">
+<div class="section-title">🧪 Test Series</div>
+
+<div class="card">
+ <h3>🟢 Easy Test</h3>
+ <p class="small">Basic concepts • 20 questions</p>
+ <button class="btn green" onclick="startDifficulty('Easy')">Start Easy</button>
+</div>
+
+<div class="card">
+ <h3>🟡 Medium Test</h3>
+ <p class="small">Board-level practice • 20 questions</p>
+ <button class="btn" onclick="startDifficulty('Medium')">Start Medium</button>
+</div>
+
+<div class="card">
+ <h3>🔴 Hard Test</h3>
+ <p class="small">Challenge yourself • 20 questions</p>
+ <button class="btn red" onclick="startDifficulty('Hard')">Start Hard</button>
+</div>
+</section>
+
+
+<!-- CUSTOM -->
+<section id="custom" class="hide">
+<div class="section-title">🎯 Custom Exam</div>
+
+<div class="card">
+ <b>Select Subjects & Chapters</b>
+ <div id="customChapters"></div>
+
+ <label class="small">Difficulty</label>
+ <select id="customDifficulty">
+  <option value="Any">Any Difficulty</option>
+  <option value="Easy">Easy</option>
+  <option value="Medium">Medium</option>
+  <option value="Hard">Hard</option>
+ </select>
+
+ <label class="small">Questions</label>
+ <select id="customCount">
+  <option>10</option>
+  <option selected>20</option>
+  <option>30</option>
+  <option>40</option>
+ </select>
+
+ <button class="btn" onclick="startCustom()">🚀 Start Custom Exam</button>
+</div>
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="hide">
+
+<div class="top">
+ <b id="quizTitle">Test</b>
+ <span class="timer" id="timer">20:00</span>
+</div>
+
+<div class="progress"><i id="quizProgress"></i></div>
+
+<div class="small" id="quizNumber"></div>
+
+<div class="card">
+ <div class="question" id="questionText"></div>
+ <div id="options"></div>
+</div>
+
+<button class="btn secondary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+
+</section>
+
+
+<!-- RESULT -->
+<section id="result" class="hide">
+<div class="card center">
+ <div style="font-size:55px">🏆</div>
+ <h2>Test Complete!</h2>
+ <p id="resultScore"></p>
+ <div class="section-title">Performance</div>
+ <div class="grid">
+  <div class="stat"><b id="rCorrect">0</b><span>Correct</span></div>
+  <div class="stat"><b id="rWrong">0</b><span>Wrong</span></div>
+  <div class="stat"><b id="rPercent">0%</b><span>Score</span></div>
+  <div class="stat"><b id="rXP">0</b><span>XP</span></div>
+ </div>
+
+ <button class="btn" onclick="show('home')">🏠 Home</button>
+ <button class="btn secondary" onclick="show('tests')">🧪 More Tests</button>
+</div>
+</section>
+
+
+<!-- PAPERS -->
+<section id="papers" class="hide">
+<div class="section-title">📄 PYQ & Sample Papers</div>
+
+<div class="card">
+ <h3>📝 Previous Year Questions</h3>
+ <p class="small">Official CBSE question-paper portal</p>
+
+ <button class="btn" onclick="openLink('https://www.cbse.gov.in/cbsenew/question-paper.html')">
+  2020–2026 PYQ Portal
+ </button>
+</div>
+
+<div class="card">
+ <h3>📑 Sample Question Papers</h3>
+
+ <button class="btn" onclick="openLink('https://cbseacademic.nic.in/SQP_CLASSX_2026-27.html')">
+  2026–27 Official SQP
+ </button>
+
+ <button class="btn secondary" onclick="openLink('https://cbseacademic.nic.in/SQP_CLASSX_2025-26.html')">
+  2025–26 Official SQP
+ </button>
+
+ <button class="btn secondary" onclick="openLink('https://cbseacademic.nic.in/sqp_archive.html')">
+  SQP Archive
+ </button>
+</div>
+
+<div class="card">
+ <b>⚠️ Important</b>
+ <p class="small" style="margin-top:7px">
+  Official CBSE pages open honge. App fake/unofficial PDF links use nahi karta.
+ </p>
+</div>
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="hide">
+
+<div class="section-title">👤 My Profile</div>
+
+<div class="card">
+ <h3>Student Information</h3>
+
+ <label class="small">Student Name</label>
+ <input id="studentName" type="text" placeholder="Enter your name">
+
+ <button class="btn" onclick="saveProfile()">Save Profile</button>
+</div>
+
+<div class="card">
+ <h3>📊 Performance</h3>
+ <p>Tests Attempted: <b id="pTests">0</b></p>
+ <p>Questions Solved: <b id="pQuestions">0</b></p>
+ <p>Correct Answers: <b id="pCorrect">0</b></p>
+ <p>Accuracy: <b id="pAccuracy">0%</b></p>
+ <p>Best Score: <b id="pBest">0%</b></p>
+ <p>XP: <b id="pXP">0</b></p>
+ <p>🔥 Streak: <b id="pStreak">0 days</b></p>
+</div>
+
+<div class="card">
+ <h3>📸 Follow StudyX</h3>
+ <p class="small">@akkuhunyarrr</p>
+ <button class="btn" onclick="openLink('https://www.instagram.com/akkuhunyarrr/')">
+  Instagram खोलें
+ </button>
+</div>
+
+</section>
+
+</main>
+
+
+<!-- NAV -->
+<div class="nav">
+<div class="nav-inner">
+
+<button onclick="show('home')" id="navhome" class="active">
+<span>🏠</span>Home
+</button>
+
+<button onclick="show('subjects')" id="navsubjects">
+<span>📚</span>Subjects
+</button>
+
+<button onclick="show('tests')" id="navtests">
+<span>🧪</span>Tests
+</button>
+
+<button onclick="show('papers')" id="navpapers">
+<span>📄</span>Papers
+</button>
+
+<button onclick="show('profile')" id="navprofile">
+<span>👤</span>Profile
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+const subjects={
+
+Science:[
+"Chemical Reactions and Equations",
+"Acids, Bases and Salts",
+"Metals and Non-metals",
+"Carbon and Its Compounds",
+"Life Processes",
+"Control and Coordination",
+"How do Organisms Reproduce?",
+"Heredity",
+"Light – Reflection and Refraction",
+"Human Eye and Colourful World",
+"Electricity",
+"Magnetic Effects of Electric Current",
+"Our Environment"
+],
+
+Maths:[
+"Real Numbers",
+"Polynomials",
+"Pair of Linear Equations in Two Variables",
+"Quadratic Equations",
+"Arithmetic Progressions",
+"Triangles",
+"Coordinate Geometry",
+"Introduction to Trigonometry",
+"Some Applications of Trigonometry",
+"Circles",
+"Areas Related to Circles",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+SST:[
+"Resources and Development",
+"Forest and Wildlife Resources",
+"Water Resources",
+"Agriculture",
+"Manufacturing Industries",
+"Lifelines of National Economy",
+"Power Sharing",
+"Federalism",
+"Gender, Religion and Caste",
+"Political Parties",
+"Outcomes of Democracy",
+"Development",
+"Sectors of the Indian Economy",
+"Money and Credit",
+"Globalisation and the Indian Economy",
+"Consumer Rights"
+],
+
+English:[
+"Reading Skills",
+"Grammar",
+"Writing Skills",
+"A Letter to God",
+"Nelson Mandela",
+"Two Stories About Flying",
+"From the Diary of Anne Frank",
+"Glimpses of India",
+"Mijbil the Otter",
+"Madam Rides the Bus",
+"The Sermon at Benares",
+"The Proposal",
+"Dust of Snow",
+"Fire and Ice",
+"A Tiger in the Zoo",
+"How to Tell Wild Animals",
+"The Ball Poem",
+"Amanda!",
+"The Trees",
+"Fog",
+"The Tale of Custard the Dragon",
+"For Anne Gregory"
+],
+
+Hindi:[
+"सूरदास",
+"राम-लक्ष्मण-परशुराम संवाद",
+"आत्मकथ्य",
+"उत्साह और अट नहीं रही है",
+"यह दंतुरित मुस्कान",
+"फसल",
+"नेताजी का चश्मा",
+"बालगोबिन भगत",
+"लखनवी अंदाज़",
+"मानवीय करुणा की दिव्य चमक",
+"एक कहानी यह भी",
+"नौबतखाने में इबादत",
+"संस्कृति"
+]
+
+};
+
+
+/* =========================
+   NOTES
+========================= */
+
+const notes={
+
+"Science|Life Processes":{
+summary:"जीवों में पोषण, श्वसन, परिवहन और उत्सर्जन जैसी प्रक्रियाएँ जीवन को बनाए रखने के लिए आवश्यक हैं।",
+points:[
+"पोषण से जीव को ऊर्जा और आवश्यक पदार्थ मिलते हैं।",
+"मानव पाचन में मुख, ग्रसनी, ग्रासनली, आमाशय, छोटी आंत और बड़ी आंत मुख्य अंग हैं।",
+"श्वसन में ग्लूकोज़ का टूटना और ऊर्जा का निर्माण होता है।",
+"मानव में रक्त परिवहन का मुख्य माध्यम है।",
+"वृक्क (kidney) रक्त से अपशिष्ट पदार्थ हटाते हैं।"
+],
+formula:"Aerobic respiration: Glucose + Oxygen → Carbon dioxide + Water + Energy"
+},
+
+"Maths|Real Numbers":{
+summary:"Real Numbers chapter में Euclid division algorithm, Fundamental Theorem of Arithmetic और irrational numbers शामिल हैं।",
+points:[
+"Euclid Division Lemma: a = bq + r, जहाँ 0 ≤ r < b.",
+"दो धनात्मक पूर्णांकों का HCF Euclid algorithm से निकाला जा सकता है।",
+"हर composite number को primes के product के रूप में uniquely लिखा जा सकता है।",
+"यदि p/q lowest form में है और q के prime factors केवल 2 और 5 हैं, तो decimal terminating होता है।"
+],
+formula:"a = bq + r"
+},
+
+"SST|Nationalism in India":{
+summary:"भारत में राष्ट्रीय आंदोलन ने अलग-अलग सामाजिक समूहों को स्वतंत्रता आंदोलन से जोड़ा।",
+points:[
+"Rowlatt Act 1919 के विरुद्ध विरोध हुआ।",
+"Jallianwala Bagh घटना 1919 में हुई।",
+"Non-Cooperation Movement 1920 में शुरू हुआ।",
+"Salt March 1930 Civil Disobedience Movement का महत्वपूर्ण भाग था।",
+"राष्ट्रीय आंदोलन में symbols, flags, songs और इतिहास ने भी भूमिका निभाई।"
+],
+formula:"Key years: 1919 → Rowlatt/Jallianwala | 1920 → Non-Cooperation | 1930 → Salt March"
+},
+
+"English|Grammar":{
+summary:"Grammar में tenses, modals, subject-verb agreement, reported speech और determiners जैसे topics महत्वपूर्ण हैं।",
+points:[
+"Subject और verb का agreement सही होना चाहिए।",
+"Reported speech में tense और pronoun context के अनुसार बदल सकते हैं।",
+"Modals ability, possibility, permission, obligation आदि बताते हैं।",
+"Writing में formal structure और correct grammar बहुत महत्वपूर्ण है।"
+],
+formula:"Always check Subject + Verb Agreement before finalising an answer."
+},
+
+"Hindi|सूरदास":{
+summary:"सूरदास की रचनाओं में कृष्ण-भक्ति और वात्सल्य भाव की प्रमुखता दिखाई देती है।",
+points:[
+"सूरदास कृष्ण भक्ति परंपरा के प्रमुख कवि माने जाते हैं।",
+"काव्य में वात्सल्य और बाल-कृष्ण की छवि महत्वपूर्ण है।",
+"ब्रज भाषा का प्रयोग प्रमुख रूप से मिलता है।",
+"पदों में भावात्मकता और सरल अभिव्यक्ति दिखाई देती है।"
+],
+formula:"मुख्य भाव: कृष्ण-भक्ति + वात्सल्य"
+}
+
+};
+
+
+/* =========================
+   QUESTION BANK
+========================= */
+
+let questions=[
+
+/* SCIENCE */
+
+{
+id:"sc1",subject:"Science",chapter:"Life Processes",difficulty:"Easy",
+q:"मानव शरीर में भोजन का अधिकतर पाचन कहाँ पूरा होता है?",
+o:["आमाशय","छोटी आंत","बड़ी आंत","ग्रासनली"],a:1
+},
+{
+id:"sc2",subject:"Science",chapter:"Life Processes",difficulty:"Easy",
+q:"पौधों में जल का परिवहन मुख्यतः किस ऊतक द्वारा होता है?",
+o:["फ्लोएम","जाइलम","मेरिस्टेम","एपिडर्मिस"],a:1
+},
+{
+id:"sc3",subject:"Science",chapter:"Life Processes",difficulty:"Medium",
+q:"रक्त में ऑक्सीजन का परिवहन मुख्यतः किसके द्वारा होता है?",
+o:["प्लाज्मा","हीमोग्लोबिन","प्लेटलेट्स","श्वेत रक्त कोशिकाएँ"],a:1
+},
+{
+id:"sc4",subject:"Science",chapter:"Life Processes",difficulty:"Medium",
+q:"वृक्क की कार्यात्मक इकाई क्या है?",
+o:["न्यूरॉन","नेफ्रॉन","एल्विओलस","विलस"],a:1
+},
+{
+id:"sc5",subject:"Science",chapter:"Chemical Reactions and Equations",difficulty:"Easy",
+q:"जिस अभिक्रिया में दो या अधिक पदार्थ मिलकर एक नया पदार्थ बनाते हैं उसे क्या कहते हैं?",
+o:["वियोजन","संयोजन","विस्थापन","उदासीनीकरण"],a:1
+},
+{
+id:"sc6",subject:"Science",chapter:"Acids, Bases and Salts",difficulty:"Easy",
+q:"pH का मान 7 से कम होने पर विलयन कैसा होता है?",
+o:["क्षारीय","उदासीन","अम्लीय","लवणीय"],a:2
+},
+{
+id:"sc7",subject:"Science",chapter:"Metals and Non-metals",difficulty:"Easy",
+q:"कमरे के तापमान पर कौन-सी धातु द्रव अवस्था में होती है?",
+o:["लोहा","पारा","तांबा","एल्युमिनियम"],a:1
+},
+{
+id:"sc8",subject:"Science",chapter:"Carbon and Its Compounds",difficulty:"Medium",
+q:"कार्बन की संयोजकता सामान्यतः कितनी होती है?",
+o:["1","2","3","4"],a:3
+},
+{
+id:"sc9",subject:"Science",chapter:"Electricity",difficulty:"Easy",
+q:"विद्युत धारा की SI इकाई क्या है?",
+o:["Volt","Ohm","Ampere","Watt"],a:2
+},
+{
+id:"sc10",subject:"Science",chapter:"Electricity",difficulty:"Medium",
+q:"Ohm's law क्या है?",
+o:["V=IR","P=VI","R=VI","I=VR"],a:0
+},
+{
+id:"sc11",subject:"Science",chapter:"Light – Reflection and Refraction",difficulty:"Easy",
+q:"निर्वात में प्रकाश की चाल लगभग कितनी है?",
+o:["3×10⁶ m/s","3×10⁸ m/s","3×10⁴ m/s","3×10² m/s"],a:1
+},
+{
+id:"sc12",subject:"Science",chapter:"Heredity",difficulty:"Medium",
+q:"आनुवंशिकता की मूल इकाई क्या है?",
+o:["कोशिका","जीन","ऊतक","अंग"],a:1
+},
+{
+id:"sc13",subject:"Science",chapter:"Our Environment",difficulty:"Easy",
+q:"खाद्य श्रृंखला में ऊर्जा का प्रवाह सामान्यतः किस दिशा में होता है?",
+o:["उपभोक्ता से उत्पादक","उत्पादक से उपभोक्ता","दोनों दिशाओं में","ऊपर से नीचे"],a:1
+},
+{
+id:"sc14",subject:"Science",chapter:"Control and Coordination",difficulty:"Easy",
+q:"तंत्रिका तंत्र की मूल इकाई क्या है?",
+o:["नेफ्रॉन","न्यूरॉन","हार्मोन","विलस"],a:1
+},
+{
+id:"sc15",subject:"Science",chapter:"How do Organisms Reproduce?",difficulty:"Medium",
+q:"अलैंगिक जनन में सामान्यतः कितने जनक की आवश्यकता होती है?",
+o:["एक","दो","तीन","चार"],a:0
+},
+{
+id:"sc16",subject:"Science",chapter:"Human Eye and Colourful World",difficulty:"Easy",
+q:"मानव आँख में प्रकाश-संवेदी कोशिकाएँ कहाँ पाई जाती हैं?",
+o:["कॉर्निया","रेटिना","आइरिस","लेंस"],a:1
+},
+
+/* MATHS */
+
+{
+id:"ma1",subject:"Maths",chapter:"Real Numbers",difficulty:"Easy",
+q:"Euclid division lemma का सामान्य रूप क्या है?",
+o:["a=bq+r","a=b+r","a=q+r","a=br+q"],a:0
+},
+{
+id:"ma2",subject:"Maths",chapter:"Real Numbers",difficulty:"Medium",
+q:"यदि HCF(a,b)=1 हो तो a और b क्या कहलाते हैं?",
+o:["सम संख्याएँ","सह-अभाज्य","अभाज्य","पूर्ण वर्ग"],a:1
+},
+{
+id:"ma3",subject:"Maths",chapter:"Polynomials",difficulty:"Easy",
+q:"Quadratic polynomial की degree कितनी होती है?",
+o:["1","2","3","4"],a:1
+},
+{
+id:"ma4",subject:"Maths",chapter:"Polynomials",difficulty:"Medium",
+q:"x² - 5x + 6 के zeroes कौन से हैं?",
+o:["1,6","2,3","-2,-3","0,6"],a:1
+},
+{
+id:"ma5",subject:"Maths",chapter:"Quadratic Equations",difficulty:"Easy",
+q:"Quadratic equation की standard form क्या है?",
+o:["ax+b=0","ax²+bx+c=0","ax³+bx=0","a+b+c=0"],a:1
+},
+{
+id:"ma6",subject:"Maths"<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>StudyX 10</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+  padding-bottom:75px;
+}
+body.dark{background:#10131a;color:#f2f4f8}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+.app{max-width:650px;margin:auto;min-height:100vh}
+
+header{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:white;padding:20px 18px;
+  border-radius:0 0 25px 25px;
+}
+.top{
+ display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-size:25px;font-weight:800}
+.sub{opacity:.85;font-size:12px;margin-top:4px}
+.iconbtn{
+ background:rgba(255,255,255,.18);color:white;
+ width:40px;height:40px;border-radius:50%;
+}
+
+.page{padding:18px}
+.section-title{
+ font-size:19px;font-weight:800;margin:20px 0 12px
+}
+
+.card{
+ background:white;border-radius:18px;padding:16px;
+ margin-bottom:12px;
+ box-shadow:0 5px 18px rgba(20,30,60,.07)
+}
+.dark .card{background:#191d27;box-shadow:none}
+
+.hero{
+ background:linear-gradient(135deg,#eef2ff,#faf5ff);
+ border-radius:20px;padding:18px;margin-top:16px;
+}
+.dark .hero{background:#191d2b}
+
+.hero h2{font-size:23px;margin-bottom:7px}
+.hero p{color:#667085;font-size:13px}
+.dark .hero p{color:#aeb5c3}
+
+.progress{
+ height:9px;background:#e5e7eb;border-radius:10px;
+ overflow:hidden;margin:12px 0
+}
+.progress i{
+ display:block;height:100%;
+ background:linear-gradient(90deg,#4f46e5,#8b5cf6);
+ width:0%
+}
+
+.grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+}
+.stat{
+ background:white;padding:15px;border-radius:17px
+}
+.dark .stat{background:#191d27}
+.stat b{font-size:22px;display:block}
+.stat span{font-size:12px;color:#667085}
+
+.btn{
+ width:100%;padding:13px;border-radius:13px;
+ background:#4f46e5;color:white;font-weight:700;
+ margin-top:9px
+}
+.btn.secondary{background:#eef2ff;color:#4338ca}
+.dark .btn.secondary{background:#292d3b;color:#c7c9ff}
+.btn.green{background:#16a34a}
+.btn.red{background:#dc2626}
+.btn.gray{background:#667085}
+
+.nav{
+ position:fixed;bottom:0;left:0;right:0;
+ background:white;border-top:1px solid #ddd;
+ height:68px;display:flex;justify-content:center;
+ z-index:99
+}
+.dark .nav{background:#171a22;border-color:#292d38}
+.nav-inner{
+ max-width:650px;width:100%;
+ display:flex;justify-content:space-around
+}
+.nav button{
+ background:none;color:#667085;font-size:11px;
+ width:20%;padding-top:10px
+}
+.nav button.active{color:#4f46e5;font-weight:bold}
+.nav span{display:block;font-size:21px;margin-bottom:3px}
+
+.subject{
+ display:flex;align-items:center;gap:12px
+}
+.subject-icon{
+ width:48px;height:48px;border-radius:15px;
+ display:grid;place-items:center;
+ background:#eef2ff;font-size:24px
+}
+.dark .subject-icon{background:#292d3b}
+
+.list-btn{
+ display:flex;align-items:center;justify-content:space-between;
+ width:100%;background:none;color:inherit;
+ padding:14px 0;border-bottom:1px solid #eee;text-align:left
+}
+.dark .list-btn{border-color:#292d38}
+
+.tag{
+ display:inline-block;padding:5px 8px;border-radius:8px;
+ background:#eef2ff;color:#4338ca;font-size:11px;font-weight:bold
+}
+.dark .tag{background:#292d3b;color:#c7c9ff}
+
+input[type=text],input[type=number],select{
+ width:100%;padding:13px;border:1px solid #ddd;
+ border-radius:12px;background:white;color:#222;
+ margin:6px 0 12px
+}
+.dark input,.dark select{
+ background:#191d27;color:white;border-color:#363b48
+}
+
+.check{
+ display:flex;gap:9px;align-items:center;
+ padding:9px 0;font-size:14px
+}
+
+.question{
+ font-size:18px;font-weight:700;line-height:1.45;
+ margin:15px 0
+}
+.option{
+ width:100%;text-align:left;padding:13px;
+ background:#f3f4f6;color:#222;
+ border-radius:12px;margin:7px 0
+}
+.dark .option{background:#292d38;color:white}
+.option.correct{background:#bbf7d0!important;color:#166534!important}
+.option.wrong{background:#fecaca!important;color:#991b1b!important}
+
+.timer{
+ background:#111827;color:white;padding:8px 12px;
+ border-radius:10px;font-weight:bold;display:inline-block
+}
+
+.note h3{margin-bottom:8px}
+.note p,.note li{
+ font-size:14px;line-height:1.65;color:#555
+}
+.dark .note p,.dark .note li{color:#c1c6d0}
+.note ul{padding-left:20px}
+
+.hide{display:none!important}
+.small{font-size:12px;color:#667085}
+.dark .small{color:#aeb5c3}
+.center{text-align:center}
+.badge{
+ padding:8px 12px;border-radius:20px;
+ background:#fef3c7;color:#92400e;font-size:12px;
+ display:inline-block;margin:4px
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+ <div class="top">
+  <div>
+   <div class="logo">📚 StudyX 10</div>
+   <div class="sub">CBSE Class 10 • Study Smart</div>
+  </div>
+  <button class="iconbtn" onclick="toggleDark()">🌙</button>
+ </div>
+</header>
+
+<main class="page">
+
+<!-- HOME -->
+<section id="home">
+
+<div class="hero">
+ <h2 id="hello">Welcome, Student 👋</h2>
+ <p>Today's target complete karo aur apni preparation strong banao.</p>
+
+ <div class="progress"><i id="dailyBar"></i></div>
+ <div class="small" id="dailyText">0 / 20 questions today</div>
+
+ <button class="btn" onclick="startDaily()">🎯 Start Today's Study</button>
+</div>
+
+<div class="grid" style="margin-top:14px">
+ <div class="stat"><b id="testsStat">0</b><span>Tests</span></div>
+ <div class="stat"><b id="questionsStat">0</b><span>Questions</span></div>
+ <div class="stat"><b id="accuracyStat">0%</b><span>Accuracy</span></div>
+ <div class="stat"><b id="bestStat">0%</b><span>Best Score</span></div>
+</div>
+
+<div class="section-title">🚀 Quick Start</div>
+
+<div class="grid">
+ <button class="card" onclick="show('subjects')">📚<br><b>Subjects</b></button>
+ <button class="card" onclick="show('tests')">🧪<br><b>Test Series</b></button>
+ <button class="card" onclick="show('notes')">📖<br><b>Notes</b></button>
+ <button class="card" onclick="show('custom')">🎯<br><b>Custom Exam</b></button>
+</div>
+
+<div class="section-title">🏆 Your Progress</div>
+<div class="card">
+ <div id="levelText"><b>Level 1 • Beginner</b></div>
+ <div class="progress"><i id="xpBar"></i></div>
+ <div class="small" id="xpText">0 XP</div>
+</div>
+
+<div class="section-title">🔥 Achievements</div>
+<div class="card" id="badges"></div>
+
+</section>
+
+
+<!-- SUBJECTS -->
+<section id="subjects" class="hide">
+<div class="section-title">📚 Subjects</div>
+
+<div id="subjectList"></div>
+</section>
+
+
+<!-- CHAPTERS -->
+<section id="chapters" class="hide">
+<button class="btn secondary" onclick="show('subjects')">← Subjects</button>
+<div class="section-title" id="chapterTitle"></div>
+<div id="chapterList"></div>
+</section>
+
+
+<!-- NOTES -->
+<section id="notes" class="hide">
+<div class="section-title">📖 Chapter Notes</div>
+
+<select id="noteSubject" onchange="loadNotes()"></select>
+<select id="noteChapter" onchange="renderNote()"></select>
+
+<div id="noteContent"></div>
+</section>
+
+
+<!-- TESTS -->
+<section id="tests" class="hide">
+<div class="section-title">🧪 Test Series</div>
+
+<div class="card">
+ <h3>🟢 Easy Test</h3>
+ <p class="small">Basic concepts • 20 questions</p>
+ <button class="btn green" onclick="startDifficulty('Easy')">Start Easy</button>
+</div>
+
+<div class="card">
+ <h3>🟡 Medium Test</h3>
+ <p class="small">Board-level practice • 20 questions</p>
+ <button class="btn" onclick="startDifficulty('Medium')">Start Medium</button>
+</div>
+
+<div class="card">
+ <h3>🔴 Hard Test</h3>
+ <p class="small">Challenge yourself • 20 questions</p>
+ <button class="btn red" onclick="startDifficulty('Hard')">Start Hard</button>
+</div>
+</section>
+
+
+<!-- CUSTOM -->
+<section id="custom" class="hide">
+<div class="section-title">🎯 Custom Exam</div>
+
+<div class="card">
+ <b>Select Subjects & Chapters</b>
+ <div id="customChapters"></div>
+
+ <label class="small">Difficulty</label>
+ <select id="customDifficulty">
+  <option value="Any">Any Difficulty</option>
+  <option value="Easy">Easy</option>
+  <option value="Medium">Medium</option>
+  <option value="Hard">Hard</option>
+ </select>
+
+ <label class="small">Questions</label>
+ <select id="customCount">
+  <option>10</option>
+  <option selected>20</option>
+  <option>30</option>
+  <option>40</option>
+ </select>
+
+ <button class="btn" onclick="startCustom()">🚀 Start Custom Exam</button>
+</div>
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="hide">
+
+<div class="top">
+ <b id="quizTitle">Test</b>
+ <span class="timer" id="timer">20:00</span>
+</div>
+
+<div class="progress"><i id="quizProgress"></i></div>
+
+<div class="small" id="quizNumber"></div>
+
+<div class="card">
+ <div class="question" id="questionText"></div>
+ <div id="options"></div>
+</div>
+
+<button class="btn secondary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+
+</section>
+
+
+<!-- RESULT -->
+<section id="result" class="hide">
+<div class="card center">
+ <div style="font-size:55px">🏆</div>
+ <h2>Test Complete!</h2>
+ <p id="resultScore"></p>
+ <div class="section-title">Performance</div>
+ <div class="grid">
+  <div class="stat"><b id="rCorrect">0</b><span>Correct</span></div>
+  <div class="stat"><b id="rWrong">0</b><span>Wrong</span></div>
+  <div class="stat"><b id="rPercent">0%</b><span>Score</span></div>
+  <div class="stat"><b id="rXP">0</b><span>XP</span></div>
+ </div>
+
+ <button class="btn" onclick="show('home')">🏠 Home</button>
+ <button class="btn secondary" onclick="show('tests')">🧪 More Tests</button>
+</div>
+</section>
+
+
+<!-- PAPERS -->
+<section id="papers" class="hide">
+<div class="section-title">📄 PYQ & Sample Papers</div>
+
+<div class="card">
+ <h3>📝 Previous Year Questions</h3>
+ <p class="small">Official CBSE question-paper portal</p>
+
+ <button class="btn" onclick="openLink('https://www.cbse.gov.in/cbsenew/question-paper.html')">
+  2020–2026 PYQ Portal
+ </button>
+</div>
+
+<div class="card">
+ <h3>📑 Sample Question Papers</h3>
+
+ <button class="btn" onclick="openLink('https://cbseacademic.nic.in/SQP_CLASSX_2026-27.html')">
+  2026–27 Official SQP
+ </button>
+
+ <button class="btn secondary" onclick="openLink('https://cbseacademic.nic.in/SQP_CLASSX_2025-26.html')">
+  2025–26 Official SQP
+ </button>
+
+ <button class="btn secondary" onclick="openLink('https://cbseacademic.nic.in/sqp_archive.html')">
+  SQP Archive
+ </button>
+</div>
+
+<div class="card">
+ <b>⚠️ Important</b>
+ <p class="small" style="margin-top:7px">
+  Official CBSE pages open honge. App fake/unofficial PDF links use nahi karta.
+ </p>
+</div>
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="hide">
+
+<div class="section-title">👤 My Profile</div>
+
+<div class="card">
+ <h3>Student Information</h3>
+
+ <label class="small">Student Name</label>
+ <input id="studentName" type="text" placeholder="Enter your name">
+
+ <button class="btn" onclick="saveProfile()">Save Profile</button>
+</div>
+
+<div class="card">
+ <h3>📊 Performance</h3>
+ <p>Tests Attempted: <b id="pTests">0</b></p>
+ <p>Questions Solved: <b id="pQuestions">0</b></p>
+ <p>Correct Answers: <b id="pCorrect">0</b></p>
+ <p>Accuracy: <b id="pAccuracy">0%</b></p>
+ <p>Best Score: <b id="pBest">0%</b></p>
+ <p>XP: <b id="pXP">0</b></p>
+ <p>🔥 Streak: <b id="pStreak">0 days</b></p>
+</div>
+
+<div class="card">
+ <h3>📸 Follow StudyX</h3>
+ <p class="small">@akkuhunyarrr</p>
+ <button class="btn" onclick="openLink('https://www.instagram.com/akkuhunyarrr/')">
+  Instagram खोलें
+ </button>
+</div>
+
+</section>
+
+</main>
+
+
+<!-- NAV -->
+<div class="nav">
+<div class="nav-inner">
+
+<button onclick="show('home')" id="navhome" class="active">
+<span>🏠</span>Home
+</button>
+
+<button onclick="show('subjects')" id="navsubjects">
+<span>📚</span>Subjects
+</button>
+
+<button onclick="show('tests')" id="navtests">
+<span>🧪</span>Tests
+</button>
+
+<button onclick="show('papers')" id="navpapers">
+<span>📄</span>Papers
+</button>
+
+<button onclick="show('profile')" id="navprofile">
+<span>👤</span>Profile
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+const subjects={
+
+Science:[
+"Chemical Reactions and Equations",
+"Acids, Bases and Salts",
+"Metals and Non-metals",
+"Carbon and Its Compounds",
+"Life Processes",
+"Control and Coordination",
+"How do Organisms Reproduce?",
+"Heredity",
+"Light – Reflection and Refraction",
+"Human Eye and Colourful World",
+"Electricity",
+"Magnetic Effects of Electric Current",
+"Our Environment"
+],
+
+Maths:[
+"Real Numbers",
+"Polynomials",
+"Pair of Linear Equations in Two Variables",
+"Quadratic Equations",
+"Arithmetic Progressions",
+"Triangles",
+"Coordinate Geometry",
+"Introduction to Trigonometry",
+"Some Applications of Trigonometry",
+"Circles",
+"Areas Related to Circles",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+SST:[
+"Resources and Development",
+"Forest and Wildlife Resources",
+"Water Resources",
+"Agriculture",
+"Manufacturing Industries",
+"Lifelines of National Economy",
+"Power Sharing",
+"Federalism",
+"Gender, Religion and Caste",
+"Political Parties",
+"Outcomes of Democracy",
+"Development",
+"Sectors of the Indian Economy",
+"Money and Credit",
+"Globalisation and the Indian Economy",
+"Consumer Rights"
+],
+
+English:[
+"Reading Skills",
+"Grammar",
+"Writing Skills",
+"A Letter to God",
+"Nelson Mandela",
+"Two Stories About Flying",
+"From the Diary of Anne Frank",
+"Glimpses of India",
+"Mijbil the Otter",
+"Madam Rides the Bus",
+"The Sermon at Benares",
+"The Proposal",
+"Dust of Snow",
+"Fire and Ice",
+"A Tiger in the Zoo",
+"How to Tell Wild Animals",
+"The Ball Poem",
+"Amanda!",
+"The Trees",
+"Fog",
+"The Tale of Custard the Dragon",
+"For Anne Gregory"
+],
+
+Hindi:[
+"सूरदास",
+"राम-लक्ष्मण-परशुराम संवाद",
+"आत्मकथ्य",
+"उत्साह और अट नहीं रही है",
+"यह दंतुरित मुस्कान",
+"फसल",
+"नेताजी का चश्मा",
+"बालगोबिन भगत",
+"लखनवी अंदाज़",
+"मानवीय करुणा की दिव्य चमक",
+"एक कहानी यह भी",
+"नौबतखाने में इबादत",
+"संस्कृति"
+]
+
+};
+
+
+/* =========================
+   NOTES
+========================= */
+
+const notes={
+
+"Science|Life Processes":{
+summary:"जीवों में पोषण, श्वसन, परिवहन और उत्सर्जन जैसी प्रक्रियाएँ जीवन को बनाए रखने के लिए आवश्यक हैं।",
+points:[
+"पोषण से जीव को ऊर्जा और आवश्यक पदार्थ मिलते हैं।",
+"मानव पाचन में मुख, ग्रसनी, ग्रासनली, आमाशय, छोटी आंत और बड़ी आंत मुख्य अंग हैं।",
+"श्वसन में ग्लूकोज़ का टूटना और ऊर्जा का निर्माण होता है।",
+"मानव में रक्त परिवहन का मुख्य माध्यम है।",
+"वृक्क (kidney) रक्त से अपशिष्ट पदार्थ हटाते हैं।"
+],
+formula:"Aerobic respiration: Glucose + Oxygen → Carbon dioxide + Water + Energy"
+},
+
+"Maths|Real Numbers":{
+summary:"Real Numbers chapter में Euclid division algorithm, Fundamental Theorem of Arithmetic और irrational numbers शामिल हैं।",
+points:[
+"Euclid Division Lemma: a = bq + r, जहाँ 0 ≤ r < b.",
+"दो धनात्मक पूर्णांकों का HCF Euclid algorithm से निकाला जा सकता है।",
+"हर composite number को primes के product के रूप में uniquely लिखा जा सकता है।",
+"यदि p/q lowest form में है और q के prime factors केवल 2 और 5 हैं, तो decimal terminating होता है।"
+],
+formula:"a = bq + r"
+},
+
+"SST|Nationalism in India":{
+summary:"भारत में राष्ट्रीय आंदोलन ने अलग-अलग सामाजिक समूहों को स्वतंत्रता आंदोलन से जोड़ा।",
+points:[
+"Rowlatt Act 1919 के विरुद्ध विरोध हुआ।",
+"Jallianwala Bagh घटना 1919 में हुई।",
+"Non-Cooperation Movement 1920 में शुरू हुआ।",
+"Salt March 1930 Civil Disobedience Movement का महत्वपूर्ण भाग था।",
+"राष्ट्रीय आंदोलन में symbols, flags, songs और इतिहास ने भी भूमिका निभाई।"
+],
+formula:"Key years: 1919 → Rowlatt/Jallianwala | 1920 → Non-Cooperation | 1930 → Salt March"
+},
+
+"English|Grammar":{
+summary:"Grammar में tenses, modals, subject-verb agreement, reported speech और determiners जैसे topics महत्वपूर्ण हैं।",
+points:[
+"Subject और verb का agreement सही होना चाहिए।",
+"Reported speech में tense और pronoun context के अनुसार बदल सकते हैं।",
+"Modals ability, possibility, permission, obligation आदि बताते हैं।",
+"Writing में formal structure और correct grammar बहुत महत्वपूर्ण है।"
+],
+formula:"Always check Subject + Verb Agreement before finalising an answer."
+},
+
+"Hindi|सूरदास":{
+summary:"सूरदास की रचनाओं में कृष्ण-भक्ति और वात्सल्य भाव की प्रमुखता दिखाई देती है।",
+points:[
+"सूरदास कृष्ण भक्ति परंपरा के प्रमुख कवि माने जाते हैं।",
+"काव्य में वात्सल्य और बाल-कृष्ण की छवि महत्वपूर्ण है।",
+"ब्रज भाषा का प्रयोग प्रमुख रूप से मिलता है।",
+"पदों में भावात्मकता और सरल अभिव्यक्ति दिखाई देती है।"
+],
+formula:"मुख्य भाव: कृष्ण-भक्ति + वात्सल्य"
+}
+
+};
+
+
+/* =========================
+   QUESTION BANK
+========================= */
+
+let questions=[
+
+/* SCIENCE */
+
+{
+id:"sc1",subject:"Science",chapter:"Life Processes",difficulty:"Easy",
+q:"मानव शरीर में भोजन का अधिकतर पाचन कहाँ पूरा होता है?",
+o:["आमाशय","छोटी आंत","बड़ी आंत","ग्रासनली"],a:1
+},
+{
+id:"sc2",subject:"Science",chapter:"Life Processes",difficulty:"Easy",
+q:"पौधों में जल का परिवहन मुख्यतः किस ऊतक द्वारा होता है?",
+o:["फ्लोएम","जाइलम","मेरिस्टेम","एपिडर्मिस"],a:1
+},
+{
+id:"sc3",subject:"Science",chapter:"Life Processes",difficulty:"Medium",
+q:"रक्त में ऑक्सीजन का परिवहन मुख्यतः किसके द्वारा होता है?",
+o:["प्लाज्मा","हीमोग्लोबिन","प्लेटलेट्स","श्वेत रक्त कोशिकाएँ"],a:1
+},
+{
+id:"sc4",subject:"Science",chapter:"Life Processes",difficulty:"Medium",
+q:"वृक्क की कार्यात्मक इकाई क्या है?",
+o:["न्यूरॉन","नेफ्रॉन","एल्विओलस","विलस"],a:1
+},
+{
+id:"sc5",subject:"Science",chapter:"Chemical Reactions and Equations",difficulty:"Easy",
+q:"जिस अभिक्रिया में दो या अधिक पदार्थ मिलकर एक नया पदार्थ बनाते हैं उसे क्या कहते हैं?",
+o:["वियोजन","संयोजन","विस्थापन","उदासीनीकरण"],a:1
+},
+{
+id:"sc6",subject:"Science",chapter:"Acids, Bases and Salts",difficulty:"Easy",
+q:"pH का मान 7 से कम होने पर विलयन कैसा होता है?",
+o:["क्षारीय","उदासीन","अम्लीय","लवणीय"],a:2
+},
+{
+id:"sc7",subject:"Science",chapter:"Metals and Non-metals",difficulty:"Easy",
+q:"कमरे के तापमान पर कौन-सी धातु द्रव अवस्था में होती है?",
+o:["लोहा","पारा","तांबा","एल्युमिनियम"],a:1
+},
+{
+id:"sc8",subject:"Science",chapter:"Carbon and Its Compounds",difficulty:"Medium",
+q:"कार्बन की संयोजकता सामान्यतः कितनी होती है?",
+o:["1","2","3","4"],a:3
+},
+{
+id:"sc9",subject:"Science",chapter:"Electricity",difficulty:"Easy",
+q:"विद्युत धारा की SI इकाई क्या है?",
+o:["Volt","Ohm","Ampere","Watt"],a:2
+},
+{
+id:"sc10",subject:"Science",chapter:"Electricity",difficulty:"Medium",
+q:"Ohm's law क्या है?",
+o:["V=IR","P=VI","R=VI","I=VR"],a:0
+},
+{
+id:"sc11",subject:"Science",chapter:"Light – Reflection and Refraction",difficulty:"Easy",
+q:"निर्वात में प्रकाश की चाल लगभग कितनी है?",
+o:["3×10⁶ m/s","3×10⁸ m/s","3×10⁴ m/s","3×10² m/s"],a:1
+},
+{
+id:"sc12",subject:"Science",chapter:"Heredity",difficulty:"Medium",
+q:"आनुवंशिकता की मूल इकाई क्या है?",
+o:["कोशिका","जीन","ऊतक","अंग"],a:1
+},
+{
+id:"sc13",subject:"Science",chapter:"Our Environment",difficulty:"Easy",
+q:"खाद्य श्रृंखला में ऊर्जा का प्रवाह सामान्यतः किस दिशा में होता है?",
+o:["उपभोक्ता से उत्पादक","उत्पादक से उपभोक्ता","दोनों दिशाओं में","ऊपर से नीचे"],a:1
+},
+{
+id:"sc14",subject:"Science",chapter:"Control and Coordination",difficulty:"Easy",
+q:"तंत्रिका तंत्र की मूल इकाई क्या है?",
+o:["नेफ्रॉन","न्यूरॉन","हार्मोन","विलस"],a:1
+},
+{
+id:"sc15",subject:"Science",chapter:"How do Organisms Reproduce?",difficulty:"Medium",
+q:"अलैंगिक जनन में सामान्यतः कितने जनक की आवश्यकता होती है?",
+o:["एक","दो","तीन","चार"],a:0
+},
+{
+id:"sc16",subject:"Science",chapter:"Human Eye and Colourful World",difficulty:"Easy",
+q:"मानव आँख में प्रकाश-संवेदी कोशिकाएँ कहाँ पाई जाती हैं?",
+o:["कॉर्निया","रेटिना","आइरिस","लेंस"],a:1
+},
+
+/* MATHS */
+
+{
+id:"ma1",subject:"Maths",chapter:"Real Numbers",difficulty:"Easy",
+q:"Euclid division lemma का सामान्य रूप क्या है?",
+o:["a=bq+r","a=b+r","a=q+r","a=br+q"],a:0
+},
+{
+id:"ma2",subject:"Maths",chapter:"Real Numbers",difficulty:"Medium",
+q:"यदि HCF(a,b)=1 हो तो a और b क्या कहलाते हैं?",
+o:["सम संख्याएँ","सह-अभाज्य","अभाज्य","पूर्ण वर्ग"],a:1
+},
+{
+id:"ma3",subject:"Maths",chapter:"Polynomials",difficulty:"Easy",
+q:"Quadratic polynomial की degree कितनी होती है?",
+o:["1","2","3","4"],a:1
+},
+{
+id:"ma4",subject:"Maths",chapter:"Polynomials",difficulty:"Medium",
+q:"x² - 5x + 6 के zeroes कौन से हैं?",
+o:["1,6","2,3","-2,-3","0,6"],a:1
+},
+{
+id:"ma5",subject:"Maths",chapter:"Quadratic Equations",difficulty:"Easy",
+q:"Quadratic equation की standard form क्या है?",
+o:["ax+b=0","ax²+bx+c=0","ax³+bx=0","a+b+c=0"],a:1
+},
+{
+id:"ma6",subject:"Maths"<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>StudyX 10</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+  padding-bottom:75px;
+}
+body.dark{background:#10131a;color:#f2f4f8}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+.app{max-width:650px;margin:auto;min-height:100vh}
+
+header{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:white;padding:20px 18px;
+  border-radius:0 0 25px 25px;
+}
+.top{
+ display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-size:25px;font-weight:800}
+.sub{opacity:.85;font-size:12px;margin-top:4px}
+.iconbtn{
+ background:rgba(255,255,255,.18);color:white;
+ width:40px;height:40px;border-radius:50%;
+}
+
+.page{padding:18px}
+.section-title{
+ font-size:19px;font-weight:800;margin:20px 0 12px
+}
+
+.card{
+ background:white;border-radius:18px;padding:16px;
+ margin-bottom:12px;
+ box-shadow:0 5px 18px rgba(20,30,60,.07)
+}
+.dark .card{background:#191d27;box-shadow:none}
+
+.hero{
+ background:linear-gradient(135deg,#eef2ff,#faf5ff);
+ border-radius:20px;padding:18px;margin-top:16px;
+}
+.dark .hero{background:#191d2b}
+
+.hero h2{font-size:23px;margin-bottom:7px}
+.hero p{color:#667085;font-size:13px}
+.dark .hero p{color:#aeb5c3}
+
+.progress{
+ height:9px;background:#e5e7eb;border-radius:10px;
+ overflow:hidden;margin:12px 0
+}
+.progress i{
+ display:block;height:100%;
+ background:linear-gradient(90deg,#4f46e5,#8b5cf6);
+ width:0%
+}
+
+.grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+}
+.stat{
+ background:white;padding:15px;border-radius:17px
+}
+.dark .stat{background:#191d27}
+.stat b{font-size:22px;display:block}
+.stat span{font-size:12px;color:#667085}
+
+.btn{
+ width:100%;padding:13px;border-radius:13px;
+ background:#4f46e5;color:white;font-weight:700;
+ margin-top:9px
+}
+.btn.secondary{background:#eef2ff;color:#4338ca}
+.dark .btn.secondary{background:#292d3b;color:#c7c9ff}
+.btn.green{background:#16a34a}
+.btn.red{background:#dc2626}
+.btn.gray{background:#667085}
+
+.nav{
+ position:fixed;bottom:0;left:0;right:0;
+ background:white;border-top:1px solid #ddd;
+ height:68px;display:flex;justify-content:center;
+ z-index:99
+}
+.dark .nav{background:#171a22;border-color:#292d38}
+.nav-inner{
+ max-width:650px;width:100%;
+ display:flex;justify-content:space-around
+}
+.nav button{
+ background:none;color:#667085;font-size:11px;
+ width:20%;padding-top:10px
+}
+.nav button.active{color:#4f46e5;font-weight:bold}
+.nav span{display:block;font-size:21px;margin-bottom:3px}
+
+.subject{
+ display:flex;align-items:center;gap:12px
+}
+.subject-icon{
+ width:48px;height:48px;border-radius:15px;
+ display:grid;place-items:center;
+ background:#eef2ff;font-size:24px
+}
+.dark .subject-icon{background:#292d3b}
+
+.list-btn{
+ display:flex;align-items:center;justify-content:space-between;
+ width:100%;background:none;color:inherit;
+ padding:14px 0;border-bottom:1px solid #eee;text-align:left
+}
+.dark .list-btn{border-color:#292d38}
+
+.tag{
+ display:inline-block;padding:5px 8px;border-radius:8px;
+ background:#eef2ff;color:#4338ca;font-size:11px;font-weight:bold
+}
+.dark .tag{background:#292d3b;color:#c7c9ff}
+
+input[type=text],input[type=number],select{
+ width:100%;padding:13px;border:1px solid #ddd;
+ border-radius:12px;background:white;color:#222;
+ margin:6px 0 12px
+}
+.dark input,.dark select{
+ background:#191d27;color:white;border-color:#363b48
+}
+
+.check{
+ display:flex;gap:9px;align-items:center;
+ padding:9px 0;font-size:14px
+}
+
+.question{
+ font-size:18px;font-weight:700;line-height:1.45;
+ margin:15px 0
+}
+.option{
+ width:100%;text-align:left;padding:13px;
+ background:#f3f4f6;color:#222;
+ border-radius:12px;margin:7px 0
+}
+.dark .option{background:#292d38;color:white}
+.option.correct{background:#bbf7d0!important;color:#166534!important}
+.option.wrong{background:#fecaca!important;color:#991b1b!important}
+
+.timer{
+ background:#111827;color:white;padding:8px 12px;
+ border-radius:10px;font-weight:bold;display:inline-block
+}
+
+.note h3{margin-bottom:8px}
+.note p,.note li{
+ font-size:14px;line-height:1.65;color:#555
+}
+.dark .note p,.dark .note li{color:#c1c6d0}
+.note ul{padding-left:20px}
+
+.hide{display:none!important}
+.small{font-size:12px;color:#667085}
+.dark .small{color:#aeb5c3}
+.center{text-align:center}
+.badge{
+ padding:8px 12px;border-radius:20px;
+ background:#fef3c7;color:#92400e;font-size:12px;
+ display:inline-block;margin:4px
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+ <div class="top">
+  <div>
+   <div class="logo">📚 StudyX 10</div>
+   <div class="sub">CBSE Class 10 • Study Smart</div>
+  </div>
+  <button class="iconbtn" onclick="toggleDark()">🌙</button>
+ </div>
+</header>
+
+<main class="page">
+
+<!-- HOME -->
+<section id="home">
+
+<div class="hero">
+ <h2 id="hello">Welcome, Student 👋</h2>
+ <p>Today's target complete karo aur apni preparation strong banao.</p>
+
+ <div class="progress"><i id="dailyBar"></i></div>
+ <div class="small" id="dailyText">0 / 20 questions today</div>
+
+ <button class="btn" onclick="startDaily()">🎯 Start Today's Study</button>
+</div>
+
+<div class="grid" style="margin-top:14px">
+ <div class="stat"><b id="testsStat">0</b><span>Tests</span></div>
+ <div class="stat"><b id="questionsStat">0</b><span>Questions</span></div>
+ <div class="stat"><b id="accuracyStat">0%</b><span>Accuracy</span></div>
+ <div class="stat"><b id="bestStat">0%</b><span>Best Score</span></div>
+</div>
+
+<div class="section-title">🚀 Quick Start</div>
+
+<div class="grid">
+ <button class="card" onclick="show('subjects')">📚<br><b>Subjects</b></button>
+ <button class="card" onclick="show('tests')">🧪<br><b>Test Series</b></button>
+ <button class="card" onclick="show('notes')">📖<br><b>Notes</b></button>
+ <button class="card" onclick="show('custom')">🎯<br><b>Custom Exam</b></button>
+</div>
+
+<div class="section-title">🏆 Your Progress</div>
+<div class="card">
+ <div id="levelText"><b>Level 1 • Beginner</b></div>
+ <div class="progress"><i id="xpBar"></i></div>
+ <div class="small" id="xpText">0 XP</div>
+</div>
+
+<div class="section-title">🔥 Achievements</div>
+<div class="card" id="badges"></div>
+
+</section>
+
+
+<!-- SUBJECTS -->
+<section id="subjects" class="hide">
+<div class="section-title">📚 Subjects</div>
+
+<div id="subjectList"></div>
+</section>
+
+
+<!-- CHAPTERS -->
+<section id="chapters" class="hide">
+<button class="btn secondary" onclick="show('subjects')">← Subjects</button>
+<div class="section-title" id="chapterTitle"></div>
+<div id="chapterList"></div>
+</section>
+
+
+<!-- NOTES -->
+<section id="notes" class="hide">
+<div class="section-title">📖 Chapter Notes</div>
+
+<select id="noteSubject" onchange="loadNotes()"></select>
+<select id="noteChapter" onchange="renderNote()"></select>
+
+<div id="noteContent"></div>
+</section>
+
+
+<!-- TESTS -->
+<section id="tests" class="hide">
+<div class="section-title">🧪 Test Series</div>
+
+<div class="card">
+ <h3>🟢 Easy Test</h3>
+ <p class="small">Basic concepts • 20 questions</p>
+ <button class="btn green" onclick="startDifficulty('Easy')">Start Easy</button>
+</div>
+
+<div class="card">
+ <h3>🟡 Medium Test</h3>
+ <p class="small">Board-level practice • 20 questions</p>
+ <button class="btn" onclick="startDifficulty('Medium')">Start Medium</button>
+</div>
+
+<div class="card">
+ <h3>🔴 Hard Test</h3>
+ <p class="small">Challenge yourself • 20 questions</p>
+ <button class="btn red" onclick="startDifficulty('Hard')">Start Hard</button>
+</div>
+</section>
+
+
+<!-- CUSTOM -->
+<section id="custom" class="hide">
+<div class="section-title">🎯 Custom Exam</div>
+
+<div class="card">
+ <b>Select Subjects & Chapters</b>
+ <div id="customChapters"></div>
+
+ <label class="small">Difficulty</label>
+ <select id="customDifficulty">
+  <option value="Any">Any Difficulty</option>
+  <option value="Easy">Easy</option>
+  <option value="Medium">Medium</option>
+  <option value="Hard">Hard</option>
+ </select>
+
+ <label class="small">Questions</label>
+ <select id="customCount">
+  <option>10</option>
+  <option selected>20</option>
+  <option>30</option>
+  <option>40</option>
+ </select>
+
+ <button class="btn" onclick="startCustom()">🚀 Start Custom Exam</button>
+</div>
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="hide">
+
+<div class="top">
+ <b id="quizTitle">Test</b>
+ <span class="timer" id="timer">20:00</span>
+</div>
+
+<div class="progress"><i id="quizProgress"></i></div>
+
+<div class="small" id="quizNumber"></div>
+
+<div class="card">
+ <div class="question" id="questionText"></div>
+ <div id="options"></div>
+</div>
+
+<button class="btn secondary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+
+</section>
+
+
+<!-- RESULT -->
+<section id="result" class="hide">
+<div class="card center">
+ <div style="font-size:55px">🏆</div>
+ <h2>Test Complete!</h2>
+ <p id="resultScore"></p>
+ <div class="section-title">Performance</div>
+ <div class="grid">
+  <div class="stat"><b id="rCorrect">0</b><span>Correct</span></div>
+  <div class="stat"><b id="rWrong">0</b><span>Wrong</span></div>
+  <div class="stat"><b id="rPercent">0%</b><span>Score</span></div>
+  <div class="stat"><b id="rXP">0</b><span>XP</span></div>
+ </div>
+
+ <button class="btn" onclick="show('home')">🏠 Home</button>
+ <button class="btn secondary" onclick="show('tests')">🧪 More Tests</button>
+</div>
+</section>
+
+
+<!-- PAPERS -->
+<section id="papers" class="hide">
+<div class="section-title">📄 PYQ & Sample Papers</div>
+
+<div class="card">
+ <h3>📝 Previous Year Questions</h3>
+ <p class="small">Official CBSE question-paper portal</p>
+
+ <button class="btn" onclick="openLink('https://www.cbse.gov.in/cbsenew/question-paper.html')">
+  2020–2026 PYQ Portal
+ </button>
+</div>
+
+<div class="card">
+ <h3>📑 Sample Question Papers</h3>
+
+ <button class="btn" onclick="openLink('https://cbseacademic.nic.in/SQP_CLASSX_2026-27.html')">
+  2026–27 Official SQP
+ </button>
+
+ <button class="btn secondary" onclick="openLink('https://cbseacademic.nic.in/SQP_CLASSX_2025-26.html')">
+  2025–26 Official SQP
+ </button>
+
+ <button class="btn secondary" onclick="openLink('https://cbseacademic.nic.in/sqp_archive.html')">
+  SQP Archive
+ </button>
+</div>
+
+<div class="card">
+ <b>⚠️ Important</b>
+ <p class="small" style="margin-top:7px">
+  Official CBSE pages open honge. App fake/unofficial PDF links use nahi karta.
+ </p>
+</div>
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="hide">
+
+<div class="section-title">👤 My Profile</div>
+
+<div class="card">
+ <h3>Student Information</h3>
+
+ <label class="small">Student Name</label>
+ <input id="studentName" type="text" placeholder="Enter your name">
+
+ <button class="btn" onclick="saveProfile()">Save Profile</button>
+</div>
+
+<div class="card">
+ <h3>📊 Performance</h3>
+ <p>Tests Attempted: <b id="pTests">0</b></p>
+ <p>Questions Solved: <b id="pQuestions">0</b></p>
+ <p>Correct Answers: <b id="pCorrect">0</b></p>
+ <p>Accuracy: <b id="pAccuracy">0%</b></p>
+ <p>Best Score: <b id="pBest">0%</b></p>
+ <p>XP: <b id="pXP">0</b></p>
+ <p>🔥 Streak: <b id="pStreak">0 days</b></p>
+</div>
+
+<div class="card">
+ <h3>📸 Follow StudyX</h3>
+ <p class="small">@akkuhunyarrr</p>
+ <button class="btn" onclick="openLink('https://www.instagram.com/akkuhunyarrr/')">
+  Instagram खोलें
+ </button>
+</div>
+
+</section>
+
+</main>
+
+
+<!-- NAV -->
+<div class="nav">
+<div class="nav-inner">
+
+<button onclick="show('home')" id="navhome" class="active">
+<span>🏠</span>Home
+</button>
+
+<button onclick="show('subjects')" id="navsubjects">
+<span>📚</span>Subjects
+</button>
+
+<button onclick="show('tests')" id="navtests">
+<span>🧪</span>Tests
+</button>
+
+<button onclick="show('papers')" id="navpapers">
+<span>📄</span>Papers
+</button>
+
+<button onclick="show('profile')" id="navprofile">
+<span>👤</span>Profile
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+const subjects={
+
+Science:[
+"Chemical Reactions and Equations",
+"Acids, Bases and Salts",
+"Metals and Non-metals",
+"Carbon and Its Compounds",
+"Life Processes",
+"Control and Coordination",
+"How do Organisms Reproduce?",
+"Heredity",
+"Light – Reflection and Refraction",
+"Human Eye and Colourful World",
+"Electricity",
+"Magnetic Effects of Electric Current",
+"Our Environment"
+],
+
+Maths:[
+"Real Numbers",
+"Polynomials",
+"Pair of Linear Equations in Two Variables",
+"Quadratic Equations",
+"Arithmetic Progressions",
+"Triangles",
+"Coordinate Geometry",
+"Introduction to Trigonometry",
+"Some Applications of Trigonometry",
+"Circles",
+"Areas Related to Circles",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+SST:[
+"Resources and Development",
+"Forest and Wildlife Resources",
+"Water Resources",
+"Agriculture",
+"Manufacturing Industries",
+"Lifelines of National Economy",
+"Power Sharing",
+"Federalism",
+"Gender, Religion and Caste",
+"Political Parties",
+"Outcomes of Democracy",
+"Development",
+"Sectors of the Indian Economy",
+"Money and Credit",
+"Globalisation and the Indian Economy",
+"Consumer Rights"
+],
+
+English:[
+"Reading Skills",
+"Grammar",
+"Writing Skills",
+"A Letter to God",
+"Nelson Mandela",
+"Two Stories About Flying",
+"From the Diary of Anne Frank",
+"Glimpses of India",
+"Mijbil the Otter",
+"Madam Rides the Bus",
+"The Sermon at Benares",
+"The Proposal",
+"Dust of Snow",
+"Fire and Ice",
+"A Tiger in the Zoo",
+"How to Tell Wild Animals",
+"The Ball Poem",
+"Amanda!",
+"The Trees",
+"Fog",
+"The Tale of Custard the Dragon",
+"For Anne Gregory"
+],
+
+Hindi:[
+"सूरदास",
+"राम-लक्ष्मण-परशुराम संवाद",
+"आत्मकथ्य",
+"उत्साह और अट नहीं रही है",
+"यह दंतुरित मुस्कान",
+"फसल",
+"नेताजी का चश्मा",
+"बालगोबिन भगत",
+"लखनवी अंदाज़",
+"मानवीय करुणा की दिव्य चमक",
+"एक कहानी यह भी",
+"नौबतखाने में इबादत",
+"संस्कृति"
+]
+
+};
+
+
+/* =========================
+   NOTES
+========================= */
+
+const notes={
+
+"Science|Life Processes":{
+summary:"जीवों में पोषण, श्वसन, परिवहन और उत्सर्जन जैसी प्रक्रियाएँ जीवन को बनाए रखने के लिए आवश्यक हैं।",
+points:[
+"पोषण से जीव को ऊर्जा और आवश्यक पदार्थ मिलते हैं।",
+"मानव पाचन में मुख, ग्रसनी, ग्रासनली, आमाशय, छोटी आंत और बड़ी आंत मुख्य अंग हैं।",
+"श्वसन में ग्लूकोज़ का टूटना और ऊर्जा का निर्माण होता है।",
+"मानव में रक्त परिवहन का मुख्य माध्यम है।",
+"वृक्क (kidney) रक्त से अपशिष्ट पदार्थ हटाते हैं।"
+],
+formula:"Aerobic respiration: Glucose + Oxygen → Carbon dioxide + Water + Energy"
+},
+
+"Maths|Real Numbers":{
+summary:"Real Numbers chapter में Euclid division algorithm, Fundamental Theorem of Arithmetic और irrational numbers शामिल हैं।",
+points:[
+"Euclid Division Lemma: a = bq + r, जहाँ 0 ≤ r < b.",
+"दो धनात्मक पूर्णांकों का HCF Euclid algorithm से निकाला जा सकता है।",
+"हर composite number को primes के product के रूप में uniquely लिखा जा सकता है।",
+"यदि p/q lowest form में है और q के prime factors केवल 2 और 5 हैं, तो decimal terminating होता है।"
+],
+formula:"a = bq + r"
+},
+
+"SST|Nationalism in India":{
+summary:"भारत में राष्ट्रीय आंदोलन ने अलग-अलग सामाजिक समूहों को स्वतंत्रता आंदोलन से जोड़ा।",
+points:[
+"Rowlatt Act 1919 के विरुद्ध विरोध हुआ।",
+"Jallianwala Bagh घटना 1919 में हुई।",
+"Non-Cooperation Movement 1920 में शुरू हुआ।",
+"Salt March 1930 Civil Disobedience Movement का महत्वपूर्ण भाग था।",
+"राष्ट्रीय आंदोलन में symbols, flags, songs और इतिहास ने भी भूमिका निभाई।"
+],
+formula:"Key years: 1919 → Rowlatt/Jallianwala | 1920 → Non-Cooperation | 1930 → Salt March"
+},
+
+"English|Grammar":{
+summary:"Grammar में tenses, modals, subject-verb agreement, reported speech और determiners जैसे topics महत्वपूर्ण हैं।",
+points:[
+"Subject और verb का agreement सही होना चाहिए।",
+"Reported speech में tense और pronoun context के अनुसार बदल सकते हैं।",
+"Modals ability, possibility, permission, obligation आदि बताते हैं।",
+"Writing में formal structure और correct grammar बहुत महत्वपूर्ण है।"
+],
+formula:"Always check Subject + Verb Agreement before finalising an answer."
+},
+
+"Hindi|सूरदास":{
+summary:"सूरदास की रचनाओं में कृष्ण-भक्ति और वात्सल्य भाव की प्रमुखता दिखाई देती है।",
+points:[
+"सूरदास कृष्ण भक्ति परंपरा के प्रमुख कवि माने जाते हैं।",
+"काव्य में वात्सल्य और बाल-कृष्ण की छवि महत्वपूर्ण है।",
+"ब्रज भाषा का प्रयोग प्रमुख रूप से मिलता है।",
+"पदों में भावात्मकता और सरल अभिव्यक्ति दिखाई देती है।"
+],
+formula:"मुख्य भाव: कृष्ण-भक्ति + वात्सल्य"
+}
+
+};
+
+
+/* =========================
+   QUESTION BANK
+========================= */
+
+let questions=[
+
+/* SCIENCE */
+
+{
+id:"sc1",subject:"Science",chapter:"Life Processes",difficulty:"Easy",
+q:"मानव शरीर में भोजन का अधिकतर पाचन कहाँ पूरा होता है?",
+o:["आमाशय","छोटी आंत","बड़ी आंत","ग्रासनली"],a:1
+},
+{
+id:"sc2",subject:"Science",chapter:"Life Processes",difficulty:"Easy",
+q:"पौधों में जल का परिवहन मुख्यतः किस ऊतक द्वारा होता है?",
+o:["फ्लोएम","जाइलम","मेरिस्टेम","एपिडर्मिस"],a:1
+},
+{
+id:"sc3",subject:"Science",chapter:"Life Processes",difficulty:"Medium",
+q:"रक्त में ऑक्सीजन का परिवहन मुख्यतः किसके द्वारा होता है?",
+o:["प्लाज्मा","हीमोग्लोबिन","प्लेटलेट्स","श्वेत रक्त कोशिकाएँ"],a:1
+},
+{
+id:"sc4",subject:"Science",chapter:"Life Processes",difficulty:"Medium",
+q:"वृक्क की कार्यात्मक इकाई क्या है?",
+o:["न्यूरॉन","नेफ्रॉन","एल्विओलस","विलस"],a:1
+},
+{
+id:"sc5",subject:"Science",chapter:"Chemical Reactions and Equations",difficulty:"Easy",
+q:"जिस अभिक्रिया में दो या अधिक पदार्थ मिलकर एक नया पदार्थ बनाते हैं उसे क्या कहते हैं?",
+o:["वियोजन","संयोजन","विस्थापन","उदासीनीकरण"],a:1
+},
+{
+id:"sc6",subject:"Science",chapter:"Acids, Bases and Salts",difficulty:"Easy",
+q:"pH का मान 7 से कम होने पर विलयन कैसा होता है?",
+o:["क्षारीय","उदासीन","अम्लीय","लवणीय"],a:2
+},
+{
+id:"sc7",subject:"Science",chapter:"Metals and Non-metals",difficulty:"Easy",
+q:"कमरे के तापमान पर कौन-सी धातु द्रव अवस्था में होती है?",
+o:["लोहा","पारा","तांबा","एल्युमिनियम"],a:1
+},
+{
+id:"sc8",subject:"Science",chapter:"Carbon and Its Compounds",difficulty:"Medium",
+q:"कार्बन की संयोजकता सामान्यतः कितनी होती है?",
+o:["1","2","3","4"],a:3
+},
+{
+id:"sc9",subject:"Science",chapter:"Electricity",difficulty:"Easy",
+q:"विद्युत धारा की SI इकाई क्या है?",
+o:["Volt","Ohm","Ampere","Watt"],a:2
+},
+{
+id:"sc10",subject:"Science",chapter:"Electricity",difficulty:"Medium",
+q:"Ohm's law क्या है?",
+o:["V=IR","P=VI","R=VI","I=VR"],a:0
+},
+{
+id:"sc11",subject:"Science",chapter:"Light – Reflection and Refraction",difficulty:"Easy",
+q:"निर्वात में प्रकाश की चाल लगभग कितनी है?",
+o:["3×10⁶ m/s","3×10⁸ m/s","3×10⁴ m/s","3×10² m/s"],a:1
+},
+{
+id:"sc12",subject:"Science",chapter:"Heredity",difficulty:"Medium",
+q:"आनुवंशिकता की मूल इकाई क्या है?",
+o:["कोशिका","जीन","ऊतक","अंग"],a:1
+},
+{
+id:"sc13",subject:"Science",chapter:"Our Environment",difficulty:"Easy",
+q:"खाद्य श्रृंखला में ऊर्जा का प्रवाह सामान्यतः किस दिशा में होता है?",
+o:["उपभोक्ता से उत्पादक","उत्पादक से उपभोक्ता","दोनों दिशाओं में","ऊपर से नीचे"],a:1
+},
+{
+id:"sc14",subject:"Science",chapter:"Control and Coordination",difficulty:"Easy",
+q:"तंत्रिका तंत्र की मूल इकाई क्या है?",
+o:["नेफ्रॉन","न्यूरॉन","हार्मोन","विलस"],a:1
+},
+{
+id:"sc15",subject:"Science",chapter:"How do Organisms Reproduce?",difficulty:"Medium",
+q:"अलैंगिक जनन में सामान्यतः कितने जनक की आवश्यकता होती है?",
+o:["एक","दो","तीन","चार"],a:0
+},
+{
+id:"sc16",subject:"Science",chapter:"Human Eye and Colourful World",difficulty:"Easy",
+q:"मानव आँख में प्रकाश-संवेदी कोशिकाएँ कहाँ पाई जाती हैं?",
+o:["कॉर्निया","रेटिना","आइरिस","लेंस"],a:1
+},
+
+/* MATHS */
+
+{
+id:"ma1",subject:"Maths",chapter:"Real Numbers",difficulty:"Easy",
+q:"Euclid division lemma का सामान्य रूप क्या है?",
+o:["a=bq+r","a=b+r","a=q+r","a=br+q"],a:0
+},
+{
+id:"ma2",subject:"Maths",chapter:"Real Numbers",difficulty:"Medium",
+q:"यदि HCF(a,b)=1 हो तो a और b क्या कहलाते हैं?",
+o:["सम संख्याएँ","सह-अभाज्य","अभाज्य","पूर्ण वर्ग"],a:1
+},
+{
+id:"ma3",subject:"Maths",chapter:"Polynomials",difficulty:"Easy",
+q:"Quadratic polynomial की degree कितनी होती है?",
+o:["1","2","3","4"],a:1
+},
+{
+id:"ma4",subject:"Maths",chapter:"Polynomials",difficulty:"Medium",
+q:"x² - 5x + 6 के zeroes कौन से हैं?",
+o:["1,6","2,3","-2,-3","0,6"],a:1
+},
+{
+id:"ma5",subject:"Maths",chapter:"Quadratic Equations",difficulty:"Easy",
+q:"Quadratic equation की standard form क्या है?",
+o:["ax+b=0","ax²+bx+c=0","ax³+bx=0","a+b+c=0"],a:1
+},
+{
+id:"ma6",subject:"Maths"
